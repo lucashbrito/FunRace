@@ -10,8 +10,8 @@ namespace Gympass.Domain.Service
     {
         private ResultModel _resultModel;
         private IList<ResultModel> _listResult;
-        private ILapTemplate _lapTemplate;
-        private IPilotTemplate _pilotTemplate;
+        private MethodTemplate.MethodTemplate _lapTemplate;
+        private MethodTemplate.MethodTemplate _pilotTemplate;
 
         public ResultModel ResultModel
         {
@@ -26,16 +26,30 @@ namespace Gympass.Domain.Service
 
         private string[] _resultLines;
 
-        public ResultService(string[] resultLines, List<ResultModel> listResult)
+        public ResultService(string[] resultLines, IList<ResultModel> listResult, LapTemplate lapTemplate, PilotTemplate pilotTemplate)
         {
             _resultLines = resultLines;
-            _lapTemplate = new LapTemplate(_resultModel);
-            _pilotTemplate = new PilotTemplate(_resultModel);
             _listResult = listResult;
+            _lapTemplate = lapTemplate;
+            _pilotTemplate = pilotTemplate;
         }
-        public ResultModel Build()
+        public void Build()
         {
-            throw new NotImplementedException();
+            for (int i = 1; i < _resultLines.Length - 1; i++)
+            {
+                _resultModel = _lapTemplate.GetInformation(_resultLines[i]);
+                _resultModel = _pilotTemplate.GetInformation(_resultLines[i]);
+
+
+                _listResult.Add(_resultModel);
+
+                Console.WriteLine($"Time: {_resultModel.Lap.Time} " +
+                                  $"Pilot {_resultModel.Pilot.Id} {_resultModel.Pilot.Name}" +
+                                  $"Race lap {_resultModel.Lap.TimeLap} Time lap{_resultModel.Lap.TimeLap}" +
+                                  $" Average speed{_resultModel.Lap.AverageLap}");
+            }
+
+
         }
 
         public ResultModel GetBestLap()

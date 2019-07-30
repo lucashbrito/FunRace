@@ -14,7 +14,12 @@ namespace Gympass.UI
         {
             ILoggerResult loggerResult = new LoggerResult();
             string[] resultLines;
-            var resultModels = new List<ResultModel>();
+            var resultModel = new ResultModel();
+            var resultModelsList = new List<ResultModel>();
+
+            var lapTemplate = new LapTemplate(resultModel);
+            var pilotTemplate = new PilotTemplate(resultModel);
+
 
             Console.WriteLine("Insert the path log, please!");
 
@@ -22,7 +27,7 @@ namespace Gympass.UI
 
             resultLines = string.IsNullOrEmpty(path) ? loggerResult.ReadResult() : loggerResult.ReadResult(path);
 
-            IResultService resultService = new ResultService(resultLines, resultModels);
+            IResultService resultService = new ResultService(resultLines, resultModelsList, lapTemplate, pilotTemplate);
 
             resultService.Build();
 

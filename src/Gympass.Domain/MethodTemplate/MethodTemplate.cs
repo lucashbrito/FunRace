@@ -1,8 +1,9 @@
-﻿using Gympass.Domain.Model;
+﻿using Gympass.Domain.Interfaces;
+using Gympass.Domain.Model;
 
 namespace Gympass.Domain.MethodTemplate
 {
-    public abstract class MethodTemplate
+    public abstract class MethodTemplate : IMethodTemplate
     {
         public ResultModel _resultModel;
 

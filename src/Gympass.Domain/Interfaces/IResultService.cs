@@ -4,7 +4,7 @@ namespace Gympass.Domain.Interfaces
 {
     public interface IResultService
     {
-        ResultModel Build();
+        void Build();
 
         ResultModel GetBestLap();
 

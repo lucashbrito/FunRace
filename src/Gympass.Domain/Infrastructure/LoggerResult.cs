@@ -8,9 +8,8 @@ namespace Gympass.Domain.Infrastructure
 {
     public class LoggerResult : ILoggerResult
     {
-        private string _path = $@"{Directory.GetCurrentDirectory()}\\Assets\\Documents\\LoggerResult.txt";
         private string[] _lines;
-
+        private string _path = $@"{Directory.GetCurrentDirectory()}\\Documents\\LoggerResult.txt";
         public string[] ReadResult(string path)
         {
             var list = ReadFile(path);

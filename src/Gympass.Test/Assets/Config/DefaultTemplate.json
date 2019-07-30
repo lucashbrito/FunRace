@@ -1,0 +1,34 @@
+{
+  "Template": [
+    {
+      "field": "Time",
+      "startIndex": "0",
+      "length": "11"
+    },
+    {
+      "field": "PilotName",
+      "startIndex": "23",
+      "length": "35"
+    },
+    {
+      "field": "PilotId",
+      "startIndex": "18",
+      "length": "3"
+    },
+    {
+      "field": "RaceLap",
+      "startIndex": "57",
+      "length": "2"
+    },
+    {
+      "field": "TimeLap",
+      "startIndex": "60",
+      "length": "8"
+    },
+    {
+      "field": "AverageLap",
+      "startIndex": "92",
+      "length": "7"
+    }
+  ]
+}

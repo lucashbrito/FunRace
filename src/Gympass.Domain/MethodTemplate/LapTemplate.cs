@@ -16,32 +16,37 @@ namespace Gympass.Domain.MethodTemplate
             _resultModel.Lap.RaceLap = GetRaceLap(line);
             _resultModel.Lap.TimeLap = GetTimeLap(line);
             _resultModel.Lap.AverageLap = GetAverageLap(line);
+            _resultModel.Lap.PilotId = GetPilotId(line);
 
             return _resultModel;
         }
 
         public string GetTime(string line)
         {
-            _resultModel.Lap.Time = line.Substring(0, 11);
-            return _resultModel.Lap.Time;
+            if (!CheckLineLenght(line, 11)) return String.Empty;
+
+            return line.Substring(0, 11);
         }
 
         public int GetRaceLap(string line)
         {
-            _resultModel.Lap.RaceLap = Convert.ToInt32(line.Substring(57, 2));
-            return _resultModel.Lap.RaceLap;
+            if (!CheckLineLenght(line, 57 + 2)) return 0;
+
+            return Convert.ToInt32(line.Substring(57, 2));
         }
 
         public string GetTimeLap(string line)
         {
-            _resultModel.Lap.TimeLap = line.Substring(61, 8);
-            return _resultModel.Lap.TimeLap;
+            if (!CheckLineLenght(line, 61 + 8)) return string.Empty;
+
+            return line.Substring(61, 8);
         }
 
         public decimal GetAverageLap(string line)
         {
-            _resultModel.Lap.AverageLap = Convert.ToDecimal(line.Substring(92, 7));
-            return _resultModel.Lap.AverageLap;
+            if (!CheckLineLenght(line, 92 + 7)) return 0;
+
+            return Convert.ToDecimal(line.Substring(92, 7));
         }
     }
 }

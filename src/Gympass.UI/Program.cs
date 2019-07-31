@@ -5,6 +5,7 @@ using Gympass.Domain.Interfaces;
 using Gympass.Domain.MethodTemplate;
 using Gympass.Domain.Model;
 using Gympass.Domain.Service;
+using Gympass.Repository;
 
 namespace Gympass.UI
 {
@@ -15,11 +16,6 @@ namespace Gympass.UI
             ILoggerResult loggerResult = new LoggerResult();
             string[] resultLines;
             var resultModel = new ResultModel();
-            var resultModelsList = new List<ResultModel>();
-
-            var lapTemplate = new LapTemplate(resultModel);
-            var pilotTemplate = new PilotTemplate(resultModel);
-
 
             Console.WriteLine("Insert the path log, please!");
 
@@ -27,7 +23,7 @@ namespace Gympass.UI
 
             resultLines = string.IsNullOrEmpty(path) ? loggerResult.ReadResult() : loggerResult.ReadResult(path);
 
-            IResultService resultService = new ResultService(resultLines, resultModelsList, lapTemplate, pilotTemplate);
+            IResultService resultService = new ResultService(resultLines, new LapTemplate(resultModel), new PilotTemplate(resultModel));
 
             resultService.Build();
 

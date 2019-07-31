@@ -6,7 +6,8 @@ namespace Gympass.Domain.Model
     {
         public ResultModel()
         {
-            
+            Pilot = new Pilot();
+            Lap = new Lap();
         }
         public Pilot Pilot { get; set; }
 

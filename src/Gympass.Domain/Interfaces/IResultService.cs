@@ -6,9 +6,9 @@ namespace Gympass.Domain.Interfaces
     {
         void Build();
 
-        ResultModel GetBestLap();
+        void GetBestLap();
 
-        ResultModel AverageSpeed();
+        void AverageSpeed();
 
         void DifferenceOfEachPilot();
     }

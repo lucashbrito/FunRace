@@ -19,16 +19,11 @@ namespace Gympass.Domain.MethodTemplate
             return _resultModel;
         }
 
-        public int GetPilotId(string line)
-        {
-            _resultModel.Pilot.Id = Convert.ToInt32(line.Substring(18, 3));
-            return _resultModel.Pilot.Id;
-        }
-
         public string GetPilotName(string line)
         {
-            _resultModel.Pilot.Name = line.Substring(23, 35);
-            return _resultModel.Pilot.Name;
+            if (!CheckLineLenght(line, 23 + 35)) return String.Empty;
+
+            return line.Substring(23, 35);
         }
     }
 }

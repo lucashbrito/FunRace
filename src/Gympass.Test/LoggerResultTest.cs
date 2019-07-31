@@ -21,7 +21,7 @@ namespace Gympass.Test
         [TestMethod]
         public void Should_ReadConfig()
         {
-            ILoggerResult logger = new LoggerResult();
+            ILoggerReport logger = new LoggerReport();
 
             var result = logger.ReadResult(_configPath);
 
@@ -31,7 +31,7 @@ namespace Gympass.Test
         [TestMethod]
         public void Should_ReadResult_WithoutPath()
         {
-            ILoggerResult logger = new LoggerResult();
+            ILoggerReport logger = new LoggerReport();
 
             var result = logger.ReadResult();
 
@@ -41,7 +41,7 @@ namespace Gympass.Test
         [TestMethod]
         public void Should_ReadResult_WithPath()
         {
-            ILoggerResult logger = new LoggerResult();
+            ILoggerReport logger = new LoggerReport();
 
             logger.ReadResult(_resultPath);
 

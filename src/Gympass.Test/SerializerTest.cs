@@ -30,7 +30,7 @@ namespace Gympass.Test
             var templateConfig = serializer.GetTemplateConfig(_templatesConfig);
 
             Assert.IsNotNull(templateConfig);
-            Assert.AreEqual("Time", templateConfig.Results[0].field);
+            Assert.AreEqual("ArrivalTime", templateConfig.Results[0].field);
             Assert.AreEqual("11", templateConfig.Results[0].length);
             Assert.AreEqual("0", templateConfig.Results[0].startIndex);
         }

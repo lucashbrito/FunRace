@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Gympass.Domain.Infrastructure;
 using Gympass.Domain.Interfaces;
-using Gympass.Domain.MethodTemplate;
-using Gympass.Domain.Model;
 using Gympass.Domain.Service;
+using Gympass.Domain.Templates;
 using Gympass.Repository;
 
 namespace Gympass.UI
@@ -13,25 +11,33 @@ namespace Gympass.UI
     {
         static void Main(string[] args)
         {
-            ILoggerResult loggerResult = new LoggerResult();
-            string[] resultLines;
-            var resultModel = new ResultModel();
+            try
+            {
+                ILoggerReport loggerResult = new LoggerReport();
+                string[] resultLines;
 
-            Console.WriteLine("Insert the path log, please!");
+                Console.WriteLine("Insert the path report, please!");
+                Console.WriteLine("In case if you don't have any one. We already setup the default for you. :)");
 
-            var path = Console.ReadLine();
+                var path = Console.ReadLine();
 
-            resultLines = string.IsNullOrEmpty(path) ? loggerResult.ReadResult() : loggerResult.ReadResult(path);
+                resultLines = string.IsNullOrEmpty(path) ? loggerResult.ReadResult() : loggerResult.ReadResult(path);
 
-            IResultService resultService = new ResultService(resultLines, new LapTemplate(resultModel), new PilotTemplate(resultModel));
+                IFormulaOneService resultService = new FormulaOneService(resultLines, new LapTemplate(), new DriverTemplate(), new GympassContext());
 
-            resultService.Build();
+                resultService.Start();
 
-            resultService.GetBestLap();
+                resultService.GetBestLap();
 
-            resultService.AverageSpeed();
+                resultService.AverageSpeed();
 
-            resultService.DifferenceOfEachPilot();
+                resultService.DifferenceOfEachPilot();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw;
+            }
         }
     }
 }

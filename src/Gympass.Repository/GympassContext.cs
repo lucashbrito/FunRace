@@ -1,28 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Gympass.Repository
 {
-    public class GympassContext : DbContext
+    public class GympassContext
     {
-        public GympassContext(DbContextOptions options) : base(options)
+        public IList<Driver> Pilots { get; set; }
+        public IList<LapDetails> Laps { get; set; }
+
+        public GympassContext()
         {
+            Pilots = new List<Driver>();
+            Laps = new List<LapDetails>();
         }
 
-        public DbSet<Pilot> Pilots { get; set; }
-        public DbSet<Lap> Laps { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public void AddPilots(Driver pilot)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                IConfigurationRoot configuration = new ConfigurationBuilder().Build();
+            if (this.Pilots.Any(p => p.Id == pilot.Id)) return;
 
-                var connection = @"Server=(localdb)\mssqllocaldb;Database=Gympass;Trusted_Connection=True;ConnectRetryCount=0";
+            this.Pilots.Add(pilot);
+        }
 
-                optionsBuilder.UseSqlServer(connection);
-            }
+        public void AddLaps(LapDetails lap)
+        {
+            this.Laps.Add(lap);
         }
     }
 }

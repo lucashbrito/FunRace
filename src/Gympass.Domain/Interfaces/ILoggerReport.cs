@@ -1,6 +1,6 @@
 ﻿namespace Gympass.Domain.Interfaces
 {
-    public interface ILoggerResult
+    public interface ILoggerReport
     {
         string[] ReadResult();
 

@@ -1,9 +1,7 @@
 ﻿namespace Gympass.Domain.Interfaces
 {
-    public interface IPilotTemplate
+    public interface IPilotTemplate : IMethodTemplate
     {
-        int GetPilotId(string line);
-
         string GetPilotName(string line);
     }
 }

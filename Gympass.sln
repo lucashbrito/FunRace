@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{E73FE7AC-866E-409A-B183-91DF36172D52}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gympass.UI", "src\Gympass.UI\Gympass.UI.csproj", "{CA2D9654-D4FF-48AA-A5E6-5100469C4AE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gympass.UI", "src\Gympass.UI\Gympass.UI.csproj", "{CA2D9654-D4FF-48AA-A5E6-5100469C4AE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gympass.Domain", "src\Gympass.Domain\Gympass.Domain.csproj", "{9D0AE4C5-AC32-49FF-8EDC-DCE8152EE0CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gympass.Domain", "src\Gympass.Domain\Gympass.Domain.csproj", "{9D0AE4C5-AC32-49FF-8EDC-DCE8152EE0CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gympass.Repository", "src\Gympass.Repository\Gympass.Repository.csproj", "{211628A1-8E5D-4FD4-AC59-D200959B95FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gympass.Repository", "src\Gympass.Repository\Gympass.Repository.csproj", "{211628A1-8E5D-4FD4-AC59-D200959B95FC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gympass.Test", "src\Gympass.Test\Gympass.Test.csproj", "{7A78AC0D-50F0-47D2-B77F-1A76AC73E95E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gympass.Test", "src\Gympass.Test\Gympass.Test.csproj", "{7A78AC0D-50F0-47D2-B77F-1A76AC73E95E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

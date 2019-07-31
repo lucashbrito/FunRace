@@ -1,12 +1,14 @@
-﻿namespace Gympass.Domain.Interfaces
+﻿using System;
+
+namespace Gympass.Domain.Interfaces
 {
-    public interface ILapTemplate
+    public interface ILapTemplate : IMethodTemplate
     {
-        string GetTime(string line);
+        double GetArrivalTime(string line);
 
-        int GetRaceLap(string line);
+        int GetRaceTracks(string line);
 
-        string GetTimeLap(string line);
+        double GetCircuitTime(string line);
 
         decimal GetAverageLap(string line);
     }

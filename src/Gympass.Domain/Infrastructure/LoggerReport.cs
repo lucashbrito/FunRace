@@ -6,7 +6,7 @@ using Gympass.Domain.Interfaces;
 
 namespace Gympass.Domain.Infrastructure
 {
-    public class LoggerResult : ILoggerResult
+    public class LoggerReport : ILoggerReport
     {
         private string[] _lines;
         private string _path = $@"{Directory.GetCurrentDirectory()}\\Documents\\LoggerResult.txt";

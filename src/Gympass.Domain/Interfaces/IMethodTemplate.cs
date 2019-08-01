@@ -3,6 +3,6 @@
     public interface IMethodTemplate
     {
         bool CheckLineLenght(string line, int lenght);
-        int GetPilotId(string line);
+        int GetPilotId(string line, string startIndex, string length);
     }
 }

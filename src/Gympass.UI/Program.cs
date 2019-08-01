@@ -23,19 +23,22 @@ namespace Gympass.UI
 
                 resultLines = string.IsNullOrEmpty(path) ? loggerResult.ReadResult() : loggerResult.ReadResult(path);
 
-                IFormulaOneService resultService = new FormulaOneService(resultLines, new LapTemplate(), new DriverTemplate(), new GympassContext());
+                IFormulaOneService formulaOneService = new FormulaOneService(path, resultLines, new LapTemplate(), new DriverTemplate(), new Calculate(), new Serializer(), new GympassContext());
 
-                resultService.Start();
+                formulaOneService.Start();
 
-                resultService.GetBestLap();
+                formulaOneService.Result();
 
-                resultService.AverageSpeed();
+                formulaOneService.GetBestLap();
 
-                resultService.DifferenceOfEachPilot();
+                formulaOneService.AverageSpeed();
+
+                formulaOneService.DifferenceOfEachPilot();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
                 throw;
             }
         }

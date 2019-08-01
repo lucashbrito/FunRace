@@ -8,33 +8,42 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Gympass.Test
 {
     [TestClass]
-    public class PilotTemplateTest
+    public class DriverTemplateTest
     {
         private static string _resultPath;
         private static ILoggerReport _logger;
-        private static string[] _resultLines;
-        private static ReportDetailsModel _resultModel;
-
+        private static string[] _repository;
+        private static DriverTemplate _driver;
+        private static RootObject _templateConfig;
+        private static ISerializer _serializer;
 
         [ClassInitialize]
         public static void Setup(TestContext testContext)
         {
             ReadResults();
-            _resultModel = new ReportDetailsModel();
         }
 
         private static void ReadResults()
         {
             _resultPath = $@"{Directory.GetCurrentDirectory()}\\Assets\\Documents\\LoggerResult.txt";
+
             _logger = new LoggerReport();
-            _resultLines = _logger.ReadResult(_resultPath);
+            _driver = new DriverTemplate();
+            _serializer = new Serializer();
+
+            _repository = _logger.ReadResult(_resultPath);
+
+            var template = File.ReadAllText($@"{Directory.GetCurrentDirectory()}\\Assets\\Config\\DefaultTemplate.json");
+
+            _templateConfig = _serializer.GetTemplateConfig(template);
         }
 
         [TestMethod]
         public void Should_GetPilotId()
         {
-            IPilotTemplate pilot = new DriverTemplate(_resultModel);
-            var id = pilot.GetPilotId(_resultLines[1]);
+            var id = _driver.GetPilotId(_repository[1],
+                _templateConfig.RootObjectConfigModel.PilotId.startIndex,
+                _templateConfig.RootObjectConfigModel.PilotId.length);
 
             Assert.IsNotNull(id);
             Assert.AreEqual(38, id);
@@ -43,8 +52,10 @@ namespace Gympass.Test
         [TestMethod]
         public void Should_GetPilotName()
         {
-            IPilotTemplate pilot = new DriverTemplate(_resultModel);
-            var name = pilot.GetPilotName(_resultLines[1]);
+
+            var name = _driver.GetPilotName(_repository[1],
+                _templateConfig.RootObjectConfigModel.PilotName.startIndex,
+                _templateConfig.RootObjectConfigModel.PilotName.length);
 
             Assert.IsNotNull(name);
             Assert.AreEqual(" F.MASSA                           ", name);

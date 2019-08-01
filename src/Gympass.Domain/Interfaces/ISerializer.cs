@@ -5,6 +5,6 @@ namespace Gympass.Domain.Interfaces
 {
     public interface ISerializer
     {
-        RootObject GetTemplateConfig(string path);
+        RootObject GetTemplateConfig(string template);
     }
 }

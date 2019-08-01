@@ -29,16 +29,6 @@ namespace Gympass.Test
         }
 
         [TestMethod]
-        public void Should_ReadResult_WithoutPath()
-        {
-            ILoggerReport logger = new LoggerReport();
-
-            var result = logger.ReadResult();
-
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
         public void Should_ReadResult_WithPath()
         {
             ILoggerReport logger = new LoggerReport();

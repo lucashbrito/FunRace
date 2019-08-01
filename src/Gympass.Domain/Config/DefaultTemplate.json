@@ -1,34 +1,28 @@
 {
-  "Template": [
-    {
-      "field": "Time",
+  "RootObjectConfigModel": {
+    "ArrivalTime": {
       "startIndex": "0",
       "length": "11"
     },
-    {
-      "field": "PilotName",
+    "PilotName": {
       "startIndex": "23",
       "length": "35"
     },
-    {
-      "field": "PilotId",
+    "PilotId": {
       "startIndex": "18",
       "length": "3"
     },
-    {
-      "field": "RaceLap",
+    "Laps": {
       "startIndex": "57",
       "length": "2"
     },
-    {
-      "field": "TimeLap",
-      "startIndex": "60",
+    "CircuitTime": {
+      "startIndex": "61",
       "length": "8"
     },
-    {
-      "field": "AverageLap",
+    "AverageLap": {
       "startIndex": "92",
       "length": "7"
     }
-  ]
+  }
 }

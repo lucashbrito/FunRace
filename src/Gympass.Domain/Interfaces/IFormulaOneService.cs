@@ -9,5 +9,7 @@
         void AverageSpeed();
 
         void DifferenceOfEachPilot();
+
+        void Result();
     }
 }

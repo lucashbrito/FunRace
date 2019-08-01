@@ -2,6 +2,6 @@
 {
     public interface IPilotTemplate : IMethodTemplate
     {
-        string GetPilotName(string line);
+        string GetPilotName(string line, string startIndex, string length);
     }
 }

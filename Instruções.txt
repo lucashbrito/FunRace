@@ -1,0 +1,9 @@
+Prezados o sistema faz leitura por posições. Como um default eu considerei o que foi dado no desafio https://github.com/Gympass/interview-test. Em caso de ter posições diferentes, fique a vontade para alterar no DefaultTemplate.json ou fique a vontade para criar o seu. 
+
+Gostaria de um feedback com relação ao projeto. Gostei muito do desafio foi bem legal. Foram gastos 16 horas, durantes alguns dias. Caso tenha alguma duvida fique a vontade para me perguntar ou até mesmo algum conselho para aplicação de outro pattern. 
+
+Variaveis, funções e classes estão em Inglês. Uma vez que a empresa é global não faz muito sentindo na minha visão ter feito em português. 
+
+Espero que gostem. 
+Abraço, 
+Lucas Brito

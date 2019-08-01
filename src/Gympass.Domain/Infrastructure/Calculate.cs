@@ -7,30 +7,61 @@ namespace Gympass.Domain.Infrastructure
     {
         public double GetHourToMinutes(string hour)
         {
+            int hours = 0, minutes = 0, second = 0;
+            double milliseconds = 0;
+
+            if (string.IsNullOrEmpty(hour))
+            {
+                return 0;
+            }
+
             var arrivalTimeSplit = hour.Split(':');
-            var milisecondsSplit = arrivalTimeSplit[3].Split('.');
 
-            var hours = Convert.ToInt32(arrivalTimeSplit[0]) / 60;
-            var minutes = Convert.ToInt32(arrivalTimeSplit[1]) / 60;
-            var second = Convert.ToInt32(arrivalTimeSplit[2]);
-            var milliseconds = Convert.ToInt32(milisecondsSplit[0]) * 0.001;
+            if (arrivalTimeSplit.Length > 0)
+                hours = Convert.ToInt32(arrivalTimeSplit[0]) * 360;
 
-            var total = hours + minutes + second + milliseconds;
+            if (arrivalTimeSplit.Length >= 1)
+                minutes = Convert.ToInt32(arrivalTimeSplit[1]) * 60;
 
-            return total;
+            if (arrivalTimeSplit.Length >= 2)
+            {
+                var millisecondsSplit = arrivalTimeSplit[2].Split('.');
+
+                if (millisecondsSplit.Length > 0)
+                    second = Convert.ToInt32(millisecondsSplit[0]);
+
+                if (millisecondsSplit.Length >= 1)
+                    milliseconds = Convert.ToInt32(millisecondsSplit[1]) * 0.001;
+            }
+
+            var totalSeconds = hours + minutes + second + milliseconds;
+
+            return totalSeconds;
         }
 
         public double GetMinutesToSeconds(string minute)
         {
+            int minutes = 0, seconds = 0;
+            double milliseconds = 0;
+
             var minuteSplit = minute.Split(':');
 
             if (minuteSplit.Length == 0) return 0;
 
-            var secondSplit = minuteSplit[1].Split('.');
+            if (minuteSplit.Length >= 1)
+            {
+                var secondSplit = minuteSplit[1].Split('.');
 
-            var minutes = Convert.ToInt32(minuteSplit[0]) * 60;
-            var seconds = Convert.ToInt32(secondSplit[0]);
-            var milliseconds = Convert.ToInt32(secondSplit[1]) * 0.001;
+                if (minuteSplit.Length > 0)
+                    minutes = Convert.ToInt32(minuteSplit[0]) * 60;
+
+                if (secondSplit.Length > 0)
+                    seconds = Convert.ToInt32(secondSplit[0]);
+
+                if (secondSplit.Length >= 1)
+                    milliseconds = Convert.ToInt32(secondSplit[1]) * 0.001;
+            }
+
             var total = minutes + seconds + milliseconds;
 
             return total;

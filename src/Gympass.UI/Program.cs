@@ -16,8 +16,9 @@ namespace Gympass.UI
                 ILoggerReport loggerResult = new LoggerReport();
                 string[] resultLines;
 
-                Console.WriteLine("Insert the path report, please!");
-                Console.WriteLine("In case if you don't have any one. We already setup the default for you. :)");
+                Console.WriteLine("You're welcome to crazy f1. To return the whole details, please insert the log's path.");
+                Console.WriteLine("In case if you don't have any one. We already mocked a default for you.");
+                Console.WriteLine("I hope you enjoy the code.");
 
                 var path = Console.ReadLine();
 
@@ -34,6 +35,8 @@ namespace Gympass.UI
                 formulaOneService.AverageSpeed();
 
                 formulaOneService.DifferenceOfEachPilot();
+
+                formulaOneService.GetBestLapOfEachDriver();
             }
             catch (Exception e)
             {

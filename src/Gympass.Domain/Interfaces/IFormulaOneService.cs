@@ -11,5 +11,6 @@
         void DifferenceOfEachPilot();
 
         void Result();
+        void GetBestLapOfEachDriver();
     }
 }

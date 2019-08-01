@@ -2,15 +2,15 @@
   "RootObjectConfigModel": {
     "ArrivalTime": {
       "startIndex": "0",
-      "length": "11"
-    },
-    "PilotName": {
-      "startIndex": "23",
-      "length": "35"
+      "length": "17"
     },
     "PilotId": {
       "startIndex": "18",
       "length": "3"
+    },
+    "PilotName": {
+      "startIndex": "23",
+      "length": "35"
     },
     "Laps": {
       "startIndex": "57",
@@ -18,7 +18,7 @@
     },
     "CircuitTime": {
       "startIndex": "61",
-      "length": "8"
+      "length": "30"
     },
     "AverageLap": {
       "startIndex": "92",

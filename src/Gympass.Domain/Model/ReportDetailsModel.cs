@@ -6,11 +6,11 @@ namespace Gympass.Domain.Model
     {
         public ReportDetailsModel()
         {
-            Pilot = new Driver();
-            Lap = new LapDetails();
+            Driver = new Driver();
+            LapDetails = new LapDetails();
         }
-        public Driver Pilot { get; set; }
+        public Driver Driver { get; set; }
 
-        public LapDetails Lap { get; set; }
+        public LapDetails LapDetails { get; set; }
     }
 }

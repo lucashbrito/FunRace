@@ -5,7 +5,7 @@ namespace Gympass.Domain.Templates
 {
     public class MethodTemplate : IMethodTemplate
     {
-        public bool CheckLineLenght(string line, int lenght)
+        public virtual bool CheckLineLenght(string line, int lenght)
         {
             return line.Length >= lenght - 1;
         }

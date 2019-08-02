@@ -5,6 +5,7 @@ using System.Linq;
 using Gympass.Domain.Interfaces;
 using Gympass.Domain.Model;
 using Gympass.Repository;
+using static System.IO.File;
 
 namespace Gympass.Domain.Service
 {
@@ -21,7 +22,7 @@ namespace Gympass.Domain.Service
 
         public FormulaOneService(string path, string[] repository, ILapTemplate lapTemplate, IPilotTemplate pilotTemplate, ICalculate calculate, ISerializer serializer, GympassContext dbContext)
         {
-            _path = File.ReadAllText($@"{Directory.GetCurrentDirectory()}\\Config\\DefaultTemplate.json");
+            _path = path == null ? ReadAllText($@"{Directory.GetCurrentDirectory()}\\Config\\DefaultTemplate.json"): path;
             _repository = repository;
             _lapTemplate = lapTemplate;
             _pilotTemplate = pilotTemplate;

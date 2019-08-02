@@ -8,7 +8,7 @@ namespace Gympass.Domain.Templates
     {
         public string GetPilotName(string line, string startIndex, string length)
         {
-            if (!CheckLineLenght(line, 23 + 35)) return Empty;
+            if (!CheckLineLenght(line, Convert.ToInt32(startIndex) + Convert.ToInt32(length))) return Empty;
 
             return line.Substring(Convert.ToInt32(startIndex), Convert.ToInt32(length));
         }

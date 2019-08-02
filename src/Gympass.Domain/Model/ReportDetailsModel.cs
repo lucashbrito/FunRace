@@ -12,7 +12,5 @@ namespace Gympass.Domain.Model
         public Driver Driver { get; set; }
 
         public LapDetails LapDetails { get; set; }
-
-
     }
 }

@@ -22,7 +22,8 @@ namespace Gympass.Domain.Service
 
         public FormulaOneService(string path, string[] repository, ILapTemplate lapTemplate, IPilotTemplate pilotTemplate, ICalculate calculate, ISerializer serializer, GympassContext dbContext)
         {
-            _path = path == null ? ReadAllText($@"{Directory.GetCurrentDirectory()}\\Config\\DefaultTemplate.json"): path;
+
+            _path = string.IsNullOrEmpty(path) ? ReadAllText($@"{Directory.GetCurrentDirectory()}\\Config\\DefaultTemplate.json") : path;
             _repository = repository;
             _lapTemplate = lapTemplate;
             _pilotTemplate = pilotTemplate;
@@ -75,7 +76,7 @@ namespace Gympass.Domain.Service
 
                 _gympassContext.AddLaps(resultModel.LapDetails);
 
-                _gympassContext.AddPilots(resultModel.Driver);
+                _gympassContext.AddDriver(resultModel.Driver);
             }
 
             GetArrivalTimeInMinutes();

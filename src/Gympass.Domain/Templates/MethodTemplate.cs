@@ -12,7 +12,7 @@ namespace Gympass.Domain.Templates
 
         public int GetPilotId(string line, string startIndex, string length)
         {
-            if (!CheckLineLenght(line, 18 + 4)) return 0;
+            if (!CheckLineLenght(line, Convert.ToInt32(startIndex) + Convert.ToInt32(length))) return 0;
 
             var id = Convert.ToInt32(line.Substring(Convert.ToInt32(startIndex), Convert.ToInt32(length)));
 

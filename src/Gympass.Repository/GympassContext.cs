@@ -14,7 +14,7 @@ namespace Gympass.Repository
             Laps = new List<LapDetails>();
         }
 
-        public void AddPilots(Driver pilot)
+        public void AddDriver(Driver pilot)
         {
             if (this.Drivers.Any(p => p.Id == pilot.Id)) return;
 

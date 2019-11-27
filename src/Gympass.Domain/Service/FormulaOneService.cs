@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Gympass.Domain.Infrastructure;
 using Gympass.Domain.Interfaces;
 using Gympass.Domain.Model;
+using Gympass.Domain.Templates;
 using Gympass.Repository;
 using static System.IO.File;
 
@@ -20,9 +22,8 @@ namespace Gympass.Domain.Service
         private string _path;
         private Dictionary<int, double> _driverPositionsDictionary;
 
-        public FormulaOneService(string path, string[] repository, ILapTemplate lapTemplate, IPilotTemplate pilotTemplate, ICalculate calculate, ISerializer serializer, GympassContext dbContext)
+        private FormulaOneService(string path, string[] repository, ILapTemplate lapTemplate, IPilotTemplate pilotTemplate, ICalculate calculate, ISerializer serializer, GympassContext dbContext)
         {
-
             _path = string.IsNullOrEmpty(path) ? ReadAllText($@"{Directory.GetCurrentDirectory()}\\Config\\DefaultTemplate.json") : path;
             _repository = repository;
             _lapTemplate = lapTemplate;
@@ -32,6 +33,12 @@ namespace Gympass.Domain.Service
             _gympassContext = dbContext;
             _driverPositionsDictionary = new Dictionary<int, double>();
         }
+
+        public static IFormulaOneService Initializer(string path, string[] resultLaps, LapTemplate lapTemplate, DriverTemplate driverTemplate, Calculate calculate, Serializer serializer, GympassContext gympassContext)
+        {
+            return new FormulaOneService(path, resultLaps, lapTemplate, driverTemplate, calculate, serializer, gympassContext);
+        }
+
         public void Start()
         {
             var templateConfig = _serializer.GetTemplateConfig(_path);

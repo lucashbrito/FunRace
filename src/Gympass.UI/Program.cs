@@ -13,8 +13,7 @@ namespace Gympass.UI
         {
             try
             {
-                ILoggerReport loggerResult = new LoggerReport();
-                string[] resultLines;
+                ILoggerReport loggerResult = LoggerReport.CreateLoggerResult();
 
                 Console.WriteLine("You're welcome to crazy f1. To return the whole details, please insert the log's path.");
                 Console.WriteLine("In case if you don't have any one. We already mocked a default for you.");
@@ -22,9 +21,9 @@ namespace Gympass.UI
 
                 var path = Console.ReadLine();
 
-                resultLines = string.IsNullOrEmpty(path) ? loggerResult.ReadResult() : loggerResult.ReadResult(path);
+                var resultLaps = string.IsNullOrEmpty(path) ? loggerResult.ReadResult() : loggerResult.ReadResult(path);
 
-                IFormulaOneService formulaOneService = new FormulaOneService(path, resultLines, new LapTemplate(), new DriverTemplate(), new Calculate(), new Serializer(), new GympassContext());
+                IFormulaOneService formulaOneService = FormulaOneService.Initializer(path, resultLaps, new LapTemplate(), new DriverTemplate(), new Calculate(), new Serializer(), new GympassContext());
 
                 formulaOneService.Start();
 

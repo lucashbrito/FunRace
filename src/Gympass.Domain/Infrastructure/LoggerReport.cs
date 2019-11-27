@@ -10,6 +10,17 @@ namespace Gympass.Domain.Infrastructure
     {
         private string[] _lines;
         private string _path = $@"{Directory.GetCurrentDirectory()}\\Documents\\LoggerResult.txt";
+
+        private LoggerReport()
+        {
+            
+        }
+
+        public static LoggerReport CreateLoggerResult()
+        {
+            return new LoggerReport();
+        }
+
         public string[] ReadResult(string path)
         {
             var list = ReadFile(path);

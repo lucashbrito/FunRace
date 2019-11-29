@@ -14,34 +14,36 @@ namespace Gympass.Domain.Service
     public class FormulaOneService : IFormulaOneService
     {
         private GympassContext _gympassContext;
-        private ILapTemplate _lapTemplate;
-        private IPilotTemplate _pilotTemplate;
+        private ILap _lapTemplate;
+        private IDriver _pilotTemplate;
         private string[] _repository;
         private ICalculate _calculate;
         private ISerializer _serializer;
-        private string _path;
-        private Dictionary<int, double> _driverPositionsDictionary;
+        private string _path = ReadAllText($@"{Directory.GetCurrentDirectory()}\\Config\\DefaultTemplate.json");
+        private Dictionary<int, double> _driverPositionsDictionary = new Dictionary<int, double>();
 
-        private FormulaOneService(string path, string[] repository, ILapTemplate lapTemplate, IPilotTemplate pilotTemplate, ICalculate calculate, ISerializer serializer, GympassContext dbContext)
+        private FormulaOneService(string template, string[] repository)
         {
-            _path = string.IsNullOrEmpty(path) ? ReadAllText($@"{Directory.GetCurrentDirectory()}\\Config\\DefaultTemplate.json") : path;
-            _repository = repository;
-            _lapTemplate = lapTemplate;
-            _pilotTemplate = pilotTemplate;
-            _calculate = calculate;
-            _serializer = serializer;
-            _gympassContext = dbContext;
-            _driverPositionsDictionary = new Dictionary<int, double>();
+            if (!string.IsNullOrEmpty(template))
+                _path = template;
+
+            _repository = repository ?? throw new ArgumentNullException("File with the grid details can not be null or empty");
+
+            _lapTemplate = Lap.Create();
+            _pilotTemplate = Templates.Driver.Create();
+            _calculate = Calculate.Create();
+            _serializer = Serializer.Create();
+            _gympassContext = GympassContext.Create();
         }
 
-        public static IFormulaOneService Initializer(string path, string[] resultLaps, LapTemplate lapTemplate, DriverTemplate driverTemplate, Calculate calculate, Serializer serializer, GympassContext gympassContext)
+        public static IFormulaOneService Initializer(string template, string[] resultLaps)
         {
-            return new FormulaOneService(path, resultLaps, lapTemplate, driverTemplate, calculate, serializer, gympassContext);
+            return new FormulaOneService(template, resultLaps);
         }
 
         public void Start()
         {
-            var templateConfig = _serializer.GetTemplateConfig(_path);
+            var template = _serializer.GetTemplateConfig(_path);
 
             for (int i = 1; i < _repository.Length; i++)
             {
@@ -49,35 +51,21 @@ namespace Gympass.Domain.Service
                 {
                     LapDetails =
                     {
-                        AverageLap = _lapTemplate.GetAverageLap(_repository[i],
-                            templateConfig.RootObjectConfigModel.AverageLap.startIndex,
-                            templateConfig.RootObjectConfigModel.AverageLap.length),
+                        AverageLap = _lapTemplate.GetAverageLap(_repository[i], template.RootObjectConfigModel.AverageLap.startIndex, template.RootObjectConfigModel.AverageLap.length),
 
-                        Laps = _lapTemplate.GetRaceTracks(_repository[i],
-                            templateConfig.RootObjectConfigModel.Laps.startIndex,
-                            templateConfig.RootObjectConfigModel.Laps.length),
+                        Laps = _lapTemplate.GetRaceTracks(_repository[i], template.RootObjectConfigModel.Laps.startIndex, template.RootObjectConfigModel.Laps.length),
 
-                        ArrivalTime = _lapTemplate.GetArrivalTime(_repository[i],
-                            templateConfig.RootObjectConfigModel.ArrivalTime.startIndex,
-                            templateConfig.RootObjectConfigModel.ArrivalTime.length),
+                        ArrivalTime = _lapTemplate.GetArrivalTime(_repository[i],template.RootObjectConfigModel.ArrivalTime.startIndex,template.RootObjectConfigModel.ArrivalTime.length),
 
-                        CircuitTime = _lapTemplate.GetCircuitTime(_repository[i],
-                            templateConfig.RootObjectConfigModel.CircuitTime.startIndex,
-                        templateConfig.RootObjectConfigModel.CircuitTime.length),
+                        CircuitTime = _lapTemplate.GetCircuitTime(_repository[i],template.RootObjectConfigModel.CircuitTime.startIndex,template.RootObjectConfigModel.CircuitTime.length),
 
-                        DriverId = _pilotTemplate.GetPilotId(_repository[i],
-                            templateConfig.RootObjectConfigModel.PilotId.startIndex,
-                            templateConfig.RootObjectConfigModel.PilotId.length)
+                        DriverId = _pilotTemplate.GetPilotId(_repository[i],template.RootObjectConfigModel.PilotId.startIndex,template.RootObjectConfigModel.PilotId.length)
                     },
                     Driver =
                     {
-                        Id = _pilotTemplate.GetPilotId(_repository[i],
-                            templateConfig.RootObjectConfigModel.PilotId.startIndex,
-                            templateConfig.RootObjectConfigModel.PilotId.length),
+                        Id = _pilotTemplate.GetPilotId(_repository[i], template.RootObjectConfigModel.PilotId.startIndex, template.RootObjectConfigModel.PilotId.length),
 
-                        Name = _pilotTemplate.GetPilotName(_repository[i],
-                            templateConfig.RootObjectConfigModel.PilotName.startIndex,
-                            templateConfig.RootObjectConfigModel.PilotName.length)
+                        Name = _pilotTemplate.GetPilotName(_repository[i], template.RootObjectConfigModel.PilotName.startIndex, template.RootObjectConfigModel.PilotName.length)
                     }
                 };
 
@@ -160,7 +148,7 @@ namespace Gympass.Domain.Service
             }
         }
 
-        private static void ShowPositions(int position, Driver driver, LapDetails laps, double totalLap)
+        private static void ShowPositions(int position, Repository.Driver driver, LapDetails laps, double totalLap)
         {
             Console.WriteLine("");
             Console.WriteLine($"Position: {position}  | " +

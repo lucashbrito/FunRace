@@ -13,7 +13,7 @@ namespace Gympass.Test
         private static string _resultPath;
         private static ILoggerReport _logger;
         private static string[] _repository;
-        private static DriverTemplate _driver;
+        private static Driver _driver;
         private static RootObject _templateConfig;
         private static ISerializer _serializer;
 
@@ -28,7 +28,7 @@ namespace Gympass.Test
             _resultPath = $@"{Directory.GetCurrentDirectory()}\\Assets\\Documents\\LoggerResult.txt";
 
             _logger = new LoggerReport();
-            _driver = new DriverTemplate();
+            _driver = new Driver();
             _serializer = new Serializer();
 
             _repository = _logger.ReadResult(_resultPath);

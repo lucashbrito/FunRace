@@ -9,24 +9,18 @@ namespace Gympass.Domain.Infrastructure
     public class LoggerReport : ILoggerReport
     {
         private string[] _lines;
-        private string _path = $@"{Directory.GetCurrentDirectory()}\\Documents\\LoggerResult.txt";
 
-        private LoggerReport()
+        private readonly string _path = $@"{Directory.GetCurrentDirectory()}\\Documents\\LoggerResult.txt";
+
+        private LoggerReport(string path)
         {
-            
+            if (!string.IsNullOrEmpty(path))
+                _path = path;
         }
 
-        public static LoggerReport CreateLoggerResult()
+        public static LoggerReport CreateLoggerResult(string path)
         {
-            return new LoggerReport();
-        }
-
-        public string[] ReadResult(string path)
-        {
-            var list = ReadFile(path);
-            _lines = list.ToArray();
-
-            return _lines;
+            return new LoggerReport(path);
         }
 
         public string[] ReadResult()

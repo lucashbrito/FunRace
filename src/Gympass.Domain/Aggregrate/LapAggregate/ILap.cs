@@ -1,6 +1,6 @@
 ﻿namespace Gympass.Domain.Interfaces
 {
-    public interface ILapTemplate : IMethodTemplate
+    public interface ILap : IRoot
     {
         string GetArrivalTime(string line, string startIndex, string length);
 

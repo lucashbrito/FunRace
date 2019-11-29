@@ -8,7 +8,7 @@ namespace Gympass.Repository
         public IList<Driver> Drivers { get; set; }
         public IList<LapDetails> Laps { get; set; }
 
-        public GympassContext()
+        private GympassContext()
         {
             Drivers = new List<Driver>();
             Laps = new List<LapDetails>();
@@ -24,6 +24,11 @@ namespace Gympass.Repository
         public void AddLaps(LapDetails lap)
         {
             this.Laps.Add(lap);
+        }
+
+        public static GympassContext Create()
+        {
+           return new GympassContext();
         }
     }
 }

@@ -3,7 +3,7 @@ using Gympass.Domain.Interfaces;
 
 namespace Gympass.Domain.Templates
 {
-    public class MethodTemplate : IMethodTemplate
+    public class Root : IRoot
     {
         public virtual bool CheckLineLenght(string line, int lenght)
         {

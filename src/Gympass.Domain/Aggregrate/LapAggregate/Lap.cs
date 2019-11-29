@@ -3,8 +3,12 @@ using Gympass.Domain.Interfaces;
 
 namespace Gympass.Domain.Templates
 {
-    public class LapTemplate : MethodTemplate, ILapTemplate
+    public class Lap : Root, ILap
     {
+        private Lap()
+        {
+            
+        }
         public string GetArrivalTime(string line, string startIndex, string length)
         {
             if (!CheckLineLenght(line, Convert.ToInt32(startIndex) + Convert.ToInt32(length))) return String.Empty;
@@ -30,6 +34,11 @@ namespace Gympass.Domain.Templates
             if (string.IsNullOrEmpty(circuitTime)) return String.Empty;
 
             return circuitTime;
+        }
+
+        internal static ILap Create()
+        {
+            return new Lap();
         }
 
         public decimal GetAverageLap(string line, string startIndex, string length)

@@ -5,6 +5,10 @@ namespace Gympass.Domain.Infrastructure
 {
     public class Calculate : ICalculate
     {
+        private Calculate()
+        {
+            
+        }
         public double GetHourToMinutes(string hour)
         {
             int hours = 0, minutes = 0, second = 0;
@@ -37,6 +41,11 @@ namespace Gympass.Domain.Infrastructure
             var totalSeconds = hours + minutes + second + milliseconds;
 
             return totalSeconds;
+        }
+
+        public static ICalculate Create()
+        {
+            return new Calculate();
         }
 
         public double GetMinutesToSeconds(string minute)

@@ -2,8 +2,6 @@
 using Gympass.Domain.Infrastructure;
 using Gympass.Domain.Interfaces;
 using Gympass.Domain.Service;
-using Gympass.Domain.Templates;
-using Gympass.Repository;
 
 namespace Gympass.UI
 {
@@ -13,17 +11,15 @@ namespace Gympass.UI
         {
             try
             {
-                ILoggerReport loggerResult = LoggerReport.CreateLoggerResult();
+                var path= Apresentation();
 
-                Console.WriteLine("You're welcome to crazy f1. To return the whole details, please insert the log's path.");
-                Console.WriteLine("In case if you don't have any one. We already mocked a default for you.");
-                Console.WriteLine("I hope you enjoy the code.");
+                var loggerResult = LoggerReport.CreateLoggerResult(path);
 
-                var path = Console.ReadLine();
+                var resultLaps = loggerResult.ReadResult();
 
-                var resultLaps = string.IsNullOrEmpty(path) ? loggerResult.ReadResult() : loggerResult.ReadResult(path);
+                var template = GetTemplate();
 
-                IFormulaOneService formulaOneService = FormulaOneService.Initializer(path, resultLaps, new LapTemplate(), new DriverTemplate(), new Calculate(), new Serializer(), new GympassContext());
+                IFormulaOneService formulaOneService = FormulaOneService.Initializer(template, resultLaps);
 
                 formulaOneService.Start();
 
@@ -43,6 +39,21 @@ namespace Gympass.UI
                 Console.WriteLine(e.StackTrace);
                 throw;
             }
+        }
+
+        private static string Apresentation()
+        {
+            Console.WriteLine("You're welcome to crazy f1. To return the whole details, please insert the log's path.");
+            Console.WriteLine("In case if you don't have any one. We already mocked a default for you.");
+            Console.WriteLine("I hope you enjoy the code.");
+
+            return  Console.ReadLine();
+        }
+
+        private static string GetTemplate()
+        {
+            Console.WriteLine("Do you want to use a new template or the default? In case to use the default, just press enter.");
+            return Console.ReadLine();
         }
     }
 }

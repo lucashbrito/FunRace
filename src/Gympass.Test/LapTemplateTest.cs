@@ -15,14 +15,14 @@ namespace Gympass.Test
         private static string[] _repository;
         private static  ISerializer _serializer;
         private static RootObject _templateConfig;
-        private static ILapTemplate _lap;
+        private static ILap _lap;
 
       [ClassInitialize]
         public static void Setup(TestContext testContext)
         {
             ReadResults();
             _serializer= new Serializer();
-            _lap = new LapTemplate();
+            _lap = new Lap();
 
             var template = File.ReadAllText($@"{Directory.GetCurrentDirectory()}\\Assets\\Config\\DefaultTemplate.json");
 

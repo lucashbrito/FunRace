@@ -1,6 +1,6 @@
 ﻿namespace Gympass.Domain.Interfaces
 {
-    public interface IFormulaOneService
+    public interface IFormulaOne
     {
         void Start();
 

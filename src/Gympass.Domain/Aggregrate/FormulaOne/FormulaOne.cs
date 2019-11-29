@@ -11,7 +11,7 @@ using static System.IO.File;
 
 namespace Gympass.Domain.Service
 {
-    public class FormulaOneService : IFormulaOneService
+    public class FormulaOne : IFormulaOne
     {
         private GympassContext _gympassContext;
         private ILap _lapTemplate;
@@ -22,7 +22,7 @@ namespace Gympass.Domain.Service
         private string _path = ReadAllText($@"{Directory.GetCurrentDirectory()}\\Config\\DefaultTemplate.json");
         private Dictionary<int, double> _driverPositionsDictionary = new Dictionary<int, double>();
 
-        private FormulaOneService(string template, string[] repository)
+        private FormulaOne(string template, string[] repository)
         {
             if (!string.IsNullOrEmpty(template))
                 _path = template;
@@ -36,9 +36,9 @@ namespace Gympass.Domain.Service
             _gympassContext = GympassContext.Create();
         }
 
-        public static IFormulaOneService Initializer(string template, string[] resultLaps)
+        public static IFormulaOne Initializer(string template, string[] resultLaps)
         {
-            return new FormulaOneService(template, resultLaps);
+            return new FormulaOne(template, resultLaps);
         }
 
         public void Start()

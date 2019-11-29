@@ -19,7 +19,7 @@ namespace Gympass.UI
 
                 var template = GetTemplate();
 
-                IFormulaOneService formulaOneService = FormulaOneService.Initializer(template, resultLaps);
+                IFormulaOne formulaOneService = FormulaOne.Initializer(template, resultLaps);
 
                 formulaOneService.Start();
 

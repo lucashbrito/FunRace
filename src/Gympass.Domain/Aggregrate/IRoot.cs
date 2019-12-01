@@ -1,8 +1,8 @@
-﻿namespace Gympass.Domain.Interfaces
+﻿namespace Gympass.Domain.Aggregate
 {
     public interface IRoot
     {
         bool CheckLineLenght(string line, int lenght);
-        int GetPilotId(string line, string startIndex, string length);
+        void GetDriverId(string line, string startIndex, string length);
     }
 }

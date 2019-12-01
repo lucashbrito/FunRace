@@ -1,6 +1,6 @@
 ﻿namespace Gympass.Repository
 {
-    public class LapDetails
+    public class Lap
     {
         public string ArrivalTime { get; set; }
 

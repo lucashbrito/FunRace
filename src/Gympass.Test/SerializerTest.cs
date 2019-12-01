@@ -1,6 +1,6 @@
 using System.IO;
 using Gympass.Domain.Infrastructure;
-using Gympass.Domain.Interfaces;
+using Gympass.Domain.Infrastructure.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Gympass.Test

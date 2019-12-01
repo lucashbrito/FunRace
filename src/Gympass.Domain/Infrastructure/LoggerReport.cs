@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Gympass.Domain.Interfaces;
+using Gympass.Domain.Infrastructure.Interfaces;
 
 namespace Gympass.Domain.Infrastructure
 {

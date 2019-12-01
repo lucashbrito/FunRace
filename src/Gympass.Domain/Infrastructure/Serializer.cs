@@ -1,4 +1,4 @@
-﻿using Gympass.Domain.Interfaces;
+﻿using Gympass.Domain.Infrastructure.Interfaces;
 using Gympass.Domain.Model;
 using System.IO;
 using System.Runtime.Serialization.Json;

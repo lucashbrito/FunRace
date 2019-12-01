@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using Gympass.Domain.Model;
+﻿using Gympass.Domain.Model;
 
-namespace Gympass.Domain.Interfaces
+namespace Gympass.Domain.Infrastructure.Interfaces
 {
     public interface ISerializer
     {

@@ -6,12 +6,12 @@ namespace Gympass.Repository
     public class GympassContext
     {
         public IList<Driver> Drivers { get; set; }
-        public IList<LapDetails> Laps { get; set; }
+        public IList<Lap> Laps { get; set; }
 
         private GympassContext()
         {
             Drivers = new List<Driver>();
-            Laps = new List<LapDetails>();
+            Laps = new List<Lap>();
         }
 
         public void AddDriver(Driver pilot)
@@ -21,7 +21,7 @@ namespace Gympass.Repository
             this.Drivers.Add(pilot);
         }
 
-        public void AddLaps(LapDetails lap)
+        public void AddLaps(Lap lap)
         {
             this.Laps.Add(lap);
         }

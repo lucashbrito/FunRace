@@ -1,7 +1,7 @@
 ﻿using System;
 using Gympass.Domain.Infrastructure;
-using Gympass.Domain.Interfaces;
-using Gympass.Domain.Service;
+using Gympass.Domain.AggregateFormulaOne;
+using Gympass.Domain.Aggregrate.AggregateStatistics;
 
 namespace Gympass.UI
 {
@@ -11,7 +11,7 @@ namespace Gympass.UI
         {
             try
             {
-                var path= Apresentation();
+                var path = Apresentation();
 
                 var loggerResult = LoggerReport.CreateLoggerResult(path);
 
@@ -19,19 +19,21 @@ namespace Gympass.UI
 
                 var template = GetTemplate();
 
-                IFormulaOne formulaOneService = FormulaOne.Initializer(template, resultLaps);
+                IFormulaOne formulaOne = FormulaOne.Initializer(template, resultLaps);
 
-                formulaOneService.Start();
+                var reportDetailsModel = formulaOne.StartTheRace();
 
-                formulaOneService.Result();
+                var statistics = Statistics.Create(reportDetailsModel.Laps, reportDetailsModel.Drivers);
 
-                formulaOneService.GetBestLap();
+                statistics.Result();
 
-                formulaOneService.AverageSpeed();
+                statistics.GetBestLap();
 
-                formulaOneService.DifferenceOfEachPilot();
+                statistics.AverageSpeed();
 
-                formulaOneService.GetBestLapOfEachDriver();
+                statistics.DifferenceOfEachPilot();
+
+                statistics.GetBestLapOfEachDriver();
             }
             catch (Exception e)
             {
@@ -47,7 +49,7 @@ namespace Gympass.UI
             Console.WriteLine("In case if you don't have any one. We already mocked a default for you.");
             Console.WriteLine("I hope you enjoy the code.");
 
-            return  Console.ReadLine();
+            return Console.ReadLine();
         }
 
         private static string GetTemplate()

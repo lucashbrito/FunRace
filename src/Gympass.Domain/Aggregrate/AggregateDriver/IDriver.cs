@@ -1,7 +1,9 @@
-﻿namespace Gympass.Domain.Interfaces
+﻿using Gympass.Domain.Aggregate;
+
+namespace Gympass.Domain.AggregateDriver
 {
     public interface IDriver : IRoot
     {
-        string GetPilotName(string line, string startIndex, string length);
+        void GetDriverName(string line, string startIndex, string length);
     }
 }

@@ -1,8 +1,8 @@
 using System.IO;
 using Gympass.Domain.Infrastructure;
-using Gympass.Domain.Interfaces;
+using Gympass.Domain.Infrastructure.Interfaces;
 using Gympass.Domain.Model;
-using Gympass.Domain.Templates;
+using Gympass.Domain.AggregateDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Gympass.Test
@@ -41,24 +41,24 @@ namespace Gympass.Test
         [TestMethod]
         public void Should_GetPilotId()
         {
-            var id = _driver.GetPilotId(_repository[1],
+             _driver.GetDriverId(_repository[1],
                 _templateConfig.RootObjectConfigModel.PilotId.startIndex,
                 _templateConfig.RootObjectConfigModel.PilotId.length);
 
-            Assert.IsNotNull(id);
-            Assert.AreEqual(38, id);
+            Assert.IsNotNull(_driver.IdDriver);
+            Assert.AreEqual(38, _driver.IdDriver);
         }
 
         [TestMethod]
         public void Should_GetPilotName()
         {
 
-            var name = _driver.GetPilotName(_repository[1],
+            _driver.GetDriverName(_repository[1],
                 _templateConfig.RootObjectConfigModel.PilotName.startIndex,
                 _templateConfig.RootObjectConfigModel.PilotName.length);
 
-            Assert.IsNotNull(name);
-            Assert.AreEqual(" F.MASSA                           ", name);
+            Assert.IsNotNull(_driver.Name);
+            Assert.AreEqual(" F.MASSA                           ", _driver.Name);
         }
     }
 }

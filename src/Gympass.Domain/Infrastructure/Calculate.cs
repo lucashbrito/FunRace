@@ -1,5 +1,5 @@
 ﻿using System;
-using Gympass.Domain.Interfaces;
+using Gympass.Domain.Infrastructure.Interfaces;
 
 namespace Gympass.Domain.Infrastructure
 {

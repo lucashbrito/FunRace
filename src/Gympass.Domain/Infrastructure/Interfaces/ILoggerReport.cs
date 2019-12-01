@@ -1,4 +1,4 @@
-﻿namespace Gympass.Domain.Interfaces
+﻿namespace Gympass.Domain.Infrastructure.Interfaces
 {
     public interface ILoggerReport
     {

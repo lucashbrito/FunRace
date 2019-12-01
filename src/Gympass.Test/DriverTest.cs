@@ -8,12 +8,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Gympass.Test
 {
     [TestClass]
-    public class DriverTemplateTest
+    public class Driver
     {
         private static string _resultPath;
         private static ILoggerReport _logger;
         private static string[] _repository;
-        private static Driver _driver;
+        private static Domain.AggregateDriver.Driver _driver;
         private static RootObject _templateConfig;
         private static ISerializer _serializer;
 
@@ -28,7 +28,7 @@ namespace Gympass.Test
             _resultPath = $@"{Directory.GetCurrentDirectory()}\\Assets\\Documents\\LoggerResult.txt";
 
             _logger = LoggerReport.CreateLoggerResult(_resultPath);
-            _driver = Driver.Create();
+            _driver = Domain.AggregateDriver.Driver.Create();
             _serializer = Serializer.Create();
 
             _repository = _logger.ReadResult();

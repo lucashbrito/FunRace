@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Gympass.Test
 {
     [TestClass]
-    public class LapTemplateTest
+    public class LapTest
     {
         private static string _resultPath;
         private static ILoggerReport _logger;

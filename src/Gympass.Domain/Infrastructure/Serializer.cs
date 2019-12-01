@@ -1,7 +1,8 @@
 ﻿using Gympass.Domain.Interfaces;
 using Gympass.Domain.Model;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Text;
 
 namespace Gympass.Domain.Infrastructure
 {
@@ -9,14 +10,23 @@ namespace Gympass.Domain.Infrastructure
     {
         private Serializer()
         {
-            
+
         }
         public RootObject GetTemplateConfig(string templateString)
         {
-            return JsonConvert.DeserializeObject<RootObject>(templateString, new StringEnumConverter());
+            var rootObject = new RootObject();
+            var contractJson = new DataContractJsonSerializer(rootObject.GetType());
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(templateString));
+            
+            rootObject = contractJson.ReadObject(stream) as RootObject;
+            
+            stream.Close();
+           
+            return rootObject;
         }
 
-        internal static ISerializer Create()
+
+        public static ISerializer Create()
         {
             return new Serializer();
         }

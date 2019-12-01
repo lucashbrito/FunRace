@@ -26,7 +26,7 @@ namespace Gympass.Test
         [TestMethod]
         public void Should_DeserializerTemplateConfig()
         {
-            ISerializer serializer = new Serializer();
+            ISerializer serializer = Serializer.Create();
             var templateConfig = serializer.GetTemplateConfig(_templatesConfig);
 
             Assert.IsNotNull(templateConfig);

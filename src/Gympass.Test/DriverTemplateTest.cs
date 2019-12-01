@@ -27,11 +27,11 @@ namespace Gympass.Test
         {
             _resultPath = $@"{Directory.GetCurrentDirectory()}\\Assets\\Documents\\LoggerResult.txt";
 
-            _logger = new LoggerReport();
-            _driver = new Driver();
-            _serializer = new Serializer();
+            _logger = LoggerReport.CreateLoggerResult(_resultPath);
+            _driver = Driver.Create();
+            _serializer = Serializer.Create();
 
-            _repository = _logger.ReadResult(_resultPath);
+            _repository = _logger.ReadResult();
 
             var template = File.ReadAllText($@"{Directory.GetCurrentDirectory()}\\Assets\\Config\\DefaultTemplate.json");
 

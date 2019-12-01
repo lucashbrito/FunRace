@@ -21,8 +21,8 @@ namespace Gympass.Test
         public static void Setup(TestContext testContext)
         {
             ReadResults();
-            _serializer= new Serializer();
-            _lap = new Lap();
+            _serializer= Serializer.Create();
+            _lap = Lap.Create();
 
             var template = File.ReadAllText($@"{Directory.GetCurrentDirectory()}\\Assets\\Config\\DefaultTemplate.json");
 
@@ -32,8 +32,8 @@ namespace Gympass.Test
         private static void ReadResults()
         {
             _resultPath = $@"{Directory.GetCurrentDirectory()}\\Assets\\Documents\\LoggerResult.txt";
-            _logger = new LoggerReport();
-            _repository = _logger.ReadResult(_resultPath);
+            _logger = LoggerReport.CreateLoggerResult(_resultPath);
+            _repository = _logger.ReadResult();
         }
 
         [TestMethod]

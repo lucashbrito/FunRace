@@ -21,20 +21,11 @@ namespace Gympass.Test
         [TestMethod]
         public void Should_ReadConfig()
         {
-            ILoggerReport logger = new LoggerReport();
+            ILoggerReport logger = LoggerReport.CreateLoggerResult(_configPath);
 
-            var result = logger.ReadResult(_configPath);
+            var result = logger.ReadResult();
 
             Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-        public void Should_ReadResult_WithPath()
-        {
-            ILoggerReport logger = new LoggerReport();
-
-            logger.ReadResult(_resultPath);
-
         }
     }
 }

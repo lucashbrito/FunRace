@@ -36,7 +36,7 @@ namespace Gympass.Domain.Templates
             return circuitTime;
         }
 
-        internal static ILap Create()
+        public static ILap Create()
         {
             return new Lap();
         }

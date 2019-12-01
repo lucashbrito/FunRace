@@ -16,7 +16,7 @@ namespace Gympass.Domain.Templates
             return line.Substring(Convert.ToInt32(startIndex), Convert.ToInt32(length));
         }
 
-        internal static IDriver Create()
+        public static Driver Create()
         {
            return new Driver();
         }

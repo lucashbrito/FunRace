@@ -3,6 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>Gympass.UI</RootNamespace>
+    <AssemblyName>Gympass.UI</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gympass.Domain\Gympass.Domain.csproj" />
+    <ProjectReference Include="..\Gympass.Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

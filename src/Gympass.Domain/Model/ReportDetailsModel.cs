@@ -7,6 +7,9 @@ namespace Gympass.Domain.Model
 {
     public class ReportDetailsModel
     {
+        public List<Driver> Drivers { get; set; }
+
+        public List<Lap> Laps { get; set; }
         private ReportDetailsModel()
         {
             Drivers = new List<Driver>();
@@ -16,11 +19,7 @@ namespace Gympass.Domain.Model
         public static ReportDetailsModel Create()
         {
             return new ReportDetailsModel();
-        }
-
-        public List<Driver> Drivers { get; set; }
-
-        public List<Lap> Laps { get; set; }
+        }     
 
         public void AddDriver(Driver driver)
         {

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FunRace.Core\FunRace.Core.csproj" />
+    <ProjectReference Include="..\FunRace.Data\FunRace.Data.csproj" />
+    <ProjectReference Include="..\FunRace.Domain\FunRace.Domain.csproj" />
+    <ProjectReference Include="..\FunRace.Infrastructure\FunRace.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

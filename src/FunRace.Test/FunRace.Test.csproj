@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.0.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FunRace.Application\FunRace.Application.csproj" />
+    <ProjectReference Include="..\FunRace.Core\FunRace.Core.csproj" />
+    <ProjectReference Include="..\FunRace.Data\FunRace.Data.csproj" />
+    <ProjectReference Include="..\FunRace.Domain\FunRace.Domain.csproj" />
+    <ProjectReference Include="..\FunRace.Infrastructure\FunRace.Infrastructure.csproj" />
+    <ProjectReference Include="..\FunRace.UI\FunRace.UI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\Config\Config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Config\DefaultTemplate.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Assets\Documents\LoggerResult.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Gympass.Domain</AssemblyName>
+    <RootNamespace>Gympass.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FunRace.Core\FunRace.Core.csproj" />
+  </ItemGroup>
+
+</Project>

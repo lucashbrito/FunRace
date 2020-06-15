@@ -13,12 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FunRace.Application\FunRace.Application.csproj" />
-    <ProjectReference Include="..\FunRace.Core\FunRace.Core.csproj" />
-    <ProjectReference Include="..\FunRace.Data\FunRace.Data.csproj" />
-    <ProjectReference Include="..\FunRace.Domain\FunRace.Domain.csproj" />
     <ProjectReference Include="..\FunRace.Infrastructure\FunRace.Infrastructure.csproj" />
-    <ProjectReference Include="..\FunRace.UI\FunRace.UI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

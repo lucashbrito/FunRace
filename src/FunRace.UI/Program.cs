@@ -12,32 +12,31 @@ namespace FunRace.UI
         {
             try
             {
-
                 var path = Apresentation();
 
                 var dataReceived = LoggerReport.ReceiveData(path);
 
-                var resultLaps = dataReceived.GetLineResults();
+                var lineResults = dataReceived.GetLineResults();
 
                 var template = GetTemplate();
 
-                ILapRepository lapRepository = new LapRepository(new FunRaceContext(resultLaps));
+                ILapRepository lapRepository = new LapRepository(new FunRaceContext(lineResults));
 
-                var formulaOneServices = FormulaOneServices.Initializer(template, lapRepository);
+                var addLapCommandHandler = FormulaOneCommand.Initializer(template, lapRepository);
 
-                formulaOneServices.StartTheRace();
+                addLapCommandHandler.Handler();
 
-                var statistics = StatisticsServices.Create(lapRepository);
+                var lapQuery = LapQuery.Create(lapRepository);
 
-                statistics.Result();
+                lapQuery.Result();
 
-                statistics.GetBestLap();
+                lapQuery.GetBestLap();
 
-                statistics.AverageSpeed();
+                lapQuery.AverageSpeed();
 
-                statistics.DifferenceOfEachPilot();
+                lapQuery.DifferenceOfEachPilot();
 
-                statistics.GetBestLapOfEachDriver();
+                lapQuery.GetBestLapOfEachDriver();
             }
             catch (Exception e)
             {

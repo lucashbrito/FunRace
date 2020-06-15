@@ -1,6 +1,6 @@
 ﻿namespace FunRace.Application.Services
 {
-    public interface IStatisticsServices
+    public interface IStatisticsQuery
     {
         void GetBestLap();
 

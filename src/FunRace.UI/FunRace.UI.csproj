@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FunRace.Application\FunRace.Application.csproj" />
+    <ProjectReference Include="..\FunRace.Data\FunRace.Data.csproj" />
     <ProjectReference Include="..\FunRace.Infrastructure\FunRace.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -6,20 +6,20 @@ using Gympass.Domain.Aggregate;
 
 namespace FunRace.Application.Services
 {
-    public class StatisticsServices : IStatisticsServices
+    public class LapQuery : IStatisticsQuery
     {
         private Dictionary<long, double> _driverPositionsDictionary;
         private ILapRepository _lapRepository;
 
-        private StatisticsServices(ILapRepository lapRepository)
+        private LapQuery(ILapRepository lapRepository)
         {
             _lapRepository = lapRepository;
             _driverPositionsDictionary = new Dictionary<long, double>();
         }
 
-        public static StatisticsServices Create(ILapRepository lapRepository)
+        public static LapQuery Create(ILapRepository lapRepository)
         {
-            return new StatisticsServices(lapRepository);
+            return new LapQuery(lapRepository);
         }
 
         public void GetBestLap()

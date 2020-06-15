@@ -7,13 +7,13 @@ using static System.IO.File;
 
 namespace FunRace.Application.Services
 {
-    public class FormulaOneServices : IFormulaOneServices
+    public class FormulaOneCommand : IAddLapCommandHandler
     {
         public ILapRepository LapRepository { get; set; }
 
         private string _path = ReadAllText($@"{Directory.GetCurrentDirectory()}\\Config\\DefaultTemplate.json");
 
-        private FormulaOneServices(string template, ILapRepository lapRepository)
+        private FormulaOneCommand(string template, ILapRepository lapRepository)
         {
             if (!string.IsNullOrEmpty(template))
                 _path = template;
@@ -21,12 +21,12 @@ namespace FunRace.Application.Services
             LapRepository = lapRepository ?? throw new ArgumentNullException("File with the grid details can not be null or empty");
         }
 
-        public static IFormulaOneServices Initializer(string template, ILapRepository lapRepository)
+        public static IAddLapCommandHandler Initializer(string template, ILapRepository lapRepository)
         {
-            return new FormulaOneServices(template, lapRepository);
+            return new FormulaOneCommand(template, lapRepository);
         }
 
-        public void StartTheRace()
+        public void Handler()
         {
             var serializer = Serializer.Create();
             var calculate = Calculate.Create();

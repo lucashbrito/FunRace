@@ -5,7 +5,7 @@ using Gympass.Domain;
 using Gympass.Domain.Aggregate;
 using static System.IO.File;
 
-namespace FunRace.Application.Services
+namespace FunRace.Application.Commands
 {
     public class FormulaOneCommand : IAddLapCommandHandler
     {

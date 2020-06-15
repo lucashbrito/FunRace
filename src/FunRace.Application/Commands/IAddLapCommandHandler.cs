@@ -1,4 +1,4 @@
-﻿namespace FunRace.Application.Services
+﻿namespace FunRace.Application.Commands
 {
     public interface IAddLapCommandHandler
     {

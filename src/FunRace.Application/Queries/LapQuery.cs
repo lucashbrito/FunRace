@@ -4,7 +4,7 @@ using System.Linq;
 using Gympass.Domain;
 using Gympass.Domain.Aggregate;
 
-namespace FunRace.Application.Services
+namespace FunRace.Application.Queries
 {
     public class LapQuery : IStatisticsQuery
     {
@@ -42,12 +42,27 @@ namespace FunRace.Application.Services
             }
         }
 
-        public void Result()
+        public void GetPositions()
         {
-            GetPositions();
+            var auxPosition = 1;
+
+            foreach (var driver in _lapRepository.GetDrivers())
+            {
+                _driverPositionsDictionary.Add(driver.Id, _lapRepository.GetTotalLapCircuitTimeInSecondLapByDriverId(driver.Id));
+            }
+
+            foreach (var (driverId, totalLap) in _driverPositionsDictionary.OrderBy(value => value.Value))
+            {
+                var driver = _lapRepository.GetDriverById(driverId);
+                var laps = _lapRepository.GetLastLap(driverId, 4);
+
+                ShowPositions(auxPosition, driver, laps, totalLap);
+
+                auxPosition++;
+            }
         }
 
-        public void AverageSpeed()
+        public void GetAverageSpeed()
         {
             Console.WriteLine("/n Average speed of each driver");
 
@@ -68,7 +83,7 @@ namespace FunRace.Application.Services
             }
         }
 
-        public void DifferenceOfEachPilot()
+        public void GetDifferenceForEachDriver()
         {
             if (DriverPositionsIsEmpty()) return;
 
@@ -93,26 +108,6 @@ namespace FunRace.Application.Services
         private bool DriverPositionsIsEmpty()
         {
             return _driverPositionsDictionary.Count <= 0;
-        }
-
-        private void GetPositions()
-        {
-            var auxPosition = 1;
-
-            foreach (var driver in _lapRepository.GetDrivers())
-            {
-                _driverPositionsDictionary.Add(driver.Id, _lapRepository.GetTotalLapCircuitTimeInSecondLapByDriverId(driver.Id));
-            }
-
-            foreach (var (driverId, totalLap) in _driverPositionsDictionary.OrderBy(value => value.Value))
-            {
-                var driver = _lapRepository.GetDriverById(driverId);
-                var laps = _lapRepository.GetLastLap(driverId, 4);
-
-                ShowPositions(auxPosition, driver, laps, totalLap);
-
-                auxPosition++;
-            }
         }
 
         private static void ShowPositions(int position, Driver driver, Lap laps, double totalLap)

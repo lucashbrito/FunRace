@@ -1,5 +1,6 @@
 ﻿using System;
-using FunRace.Application.Services;
+using FunRace.Application.Commands;
+using FunRace.Application.Queries;
 using FunRace.Data;
 using FunRace.Infrastructure.Infrastructure;
 using Gympass.Domain;
@@ -28,13 +29,13 @@ namespace FunRace.UI
 
                 var lapQuery = LapQuery.Create(lapRepository);
 
-                lapQuery.Result();
+                lapQuery.GetPositions();
 
                 lapQuery.GetBestLap();
 
-                lapQuery.AverageSpeed();
+                lapQuery.GetAverageSpeed();
 
-                lapQuery.DifferenceOfEachPilot();
+                lapQuery.GetDifferenceForEachDriver();
 
                 lapQuery.GetBestLapOfEachDriver();
             }

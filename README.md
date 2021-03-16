@@ -1,5 +1,6 @@
 Issue
-========Given the following log of a go-kart race:
+========
+Given the following log of a go-kart race:
 
 ```text
 Time                               Pilot                  No    Lap Time Lap       Average turn speed
